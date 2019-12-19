@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Joguinho sem nome</title>
+</head>
+<body>
+    <canvas id="canvas" width="500" height="500" style="background-color: rgba(0, 0, 0, 0.2);"></canvas>
+    <p>Player Point: <span id="Player">0</span></p>
+    <p>Enemy Point: <span id="Enemy">0</span></p>
+    <!-- Script --> 
+    <script src="game.js"></script>
+    <script src="helper.js"></script>
+    <script src="fruit.js"></script>
+    <script src="enemy.js"></script>
+    <script src="player.js"></script>
+    <script>
+        var running = true
+        Game.sprinters.push(Player)
+        Game.sprinters.push(Fruit)
+        Game.sprinters.push(Enemy)
+        Fruit.reposition()
+        var gameloop = setInterval(function(){
+            if(!running)
+                clearInterval(gameloop)
+
+
+            Enemy.next_move()
+            Player.next_move()
+
+            Player.colision()
+            Enemy.colision()
+            Game.update()
+        }, 1000 / 60)
+        /*setInterval(function(){
+            Fruit.reposition()
+        }, 2500)*/
+    </script>
+</body>
+</html>
